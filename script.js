@@ -1,33 +1,5 @@
 var app = new Vue ({
     el: '#app',
-    /*
-    data: {
-      arrayMovies: [],
-      thisSearch: '',
-    },
-  
-    methods: {
-      //Ricerca di un film all'interno del sito
-      searchFunction: function() {  
-        
-        axios
-        .get('https://api.themoviedb.org/3/search/movie',
-          { params:
-            {
-              api_key: '2cd3ef7f0cd27a179b24f4410ce0e944',
-              query: this.thisSearch,          
-            }
-          }
-        )
-  
-        .then(risposta => {
-          this.arrayMovies = risposta.data.results;   
-  
-          this.thisSearch = '';          
-        });  
-      },
-  
-    },*/
     data: {
       arrayFilm: [],
       arraySerieTv: [],
@@ -35,13 +7,14 @@ var app = new Vue ({
       thisSearch: ''
     },
     methods: {
+      //Richaimo sia per serie che per film
       searchFunction() {
         this.searchFilm();
         this.searchSerieTv();
       },
-  
+      
+      //Film 
       searchFilm(){
-        //Chiamata per movie:
         axios
         .get('https://api.themoviedb.org/3/search/movie',
           { params:
@@ -56,9 +29,9 @@ var app = new Vue ({
           this.arrayFilm = risposta.data.results;
         });
       },
-  
+
+      //Serie
       searchSerieTv(){
-        //chiamata serie tv
         axios
         .get('https://api.themoviedb.org/3/search/tv',
           { params:
@@ -79,11 +52,9 @@ var app = new Vue ({
       },
       voteStarsFunct: function(movie) {
         return Math.ceil( movie.vote_average / 2 );
-      },
-  
+      },  
       summonPoster: function(poster) {
         return `https://image.tmdb.org/t/p/w342/${poster}`;
       }
     }
-
   })

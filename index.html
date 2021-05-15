@@ -19,31 +19,6 @@
 
 </head>
 <body>
-  <!--
-    <div id="app">
-      <div class="container">
-
-        <div class="title">
-          Cerca un film:
-        </div>
-    
-        <div class="searchContainer">
-          <input class="searchBar" type="text" name="" value="" v-model="thisSearch" placeholder="Film title" @keyup.enter="searchFunction">
-          <button type="button" name="button" @click="searchFunction">Search</button>
-        </div>
-            
-        <ul v-for="movie in arrayMovies">
-          <li>
-            <div class="title">TITLE: {{ movie.title }} </div>
-            <div class="original_title">ORIGINAL TITLE: {{ movie.original_title }} </div>
-            <div class="original_language">LEANGUAGE: {{ movie.original_language }} </div>
-            <div class="vote_average">VOTE: {{ movie.vote_average }} </div>
-          </li>
-        </ul>
-
-      </div>
-
-    </div> -->
 
     <div id="app">
       <header>
@@ -62,27 +37,32 @@
 
         <!-- film -->
         <div class="risultatiFilm corniceRicerche">
-           <!-- v-if="(arrayFilm.length > 0)" -->
           <ul v-if="(arrayFilm.length > 0)">
             <h1>FILM</h1>
 
             <li class="scheda" v-for="movie in arrayFilm">
+              <!--Ricerco la copertina del film-->
               <div class="poster">
-                <img v-if="movie.poster_path" :src="summonPoster(movie.poster_path)" alt="">
+                <img v-if="movie.poster_path" :src="summonPoster(movie.poster_path)">
                 <img v-else src="img/404.png"  alt="">
               </div>
+
               <div class="testoCheAppareOnHover">
                 <div class="title">TITOLO: {{ movie.title }} </div>
                 <div class="original_title">TITOLO ORIGINALE: {{ movie.original_title }} </div>
                 <div class="nationality">
+
+                  <!--Bandiera nazionalità film-->
                   <div class="flag">
-                    <img v-if="flagFunction(movie.original_language)" :src="`./flags/${movie.original_language}.svg`" alt="">
+                    <img v-if="flagFunction(movie.original_language)" :src="'flags/${movie.original_language}.svg'" alt="">
                     <img v-else :src="`./flags/notFound.svg`" alt="">
                   </div>
+
                 </div>
                 <div class="original_language">LINGUA: {{ movie.original_language }} </div>
                 <div class="vote_average">VOTO: {{ movie.vote_average }} </div>
                 <div class="vote_stars">
+                  <!--Voto del film-->
                   <i v-for="fullStar in voteStarsFunct(movie)" class="fas fa-star" ></i>
                   <i v-for="hollowStar in (5 - voteStarsFunct(movie))" class="far fa-star"></i>
                 </div>
@@ -99,6 +79,7 @@
           <ul v-if="(arraySerieTv.length > 0)" >
             <h1>TELEFILM</h1>
             <li class="blue scheda" v-for="serieTv in arraySerieTv">
+              <!--Ricerco la copertina della serie-->
               <div class="poster">
                 <img v-if="serieTv.poster_path" :src="summonPoster(serieTv.poster_path)" alt="">
                 <img v-else src="./img/404.png"  alt="">
@@ -108,6 +89,7 @@
                 <div class="original_title">TITOLO ORIGINALE: {{ serieTv.original_name }} </div>
                 <div class="nationality">
                   <div class="flag">
+                    <!--Nazionalità della serie-->
                     <img v-if="flagFunction(serieTv.original_language)" :src="`./flags/${serieTv.original_language}.svg`" alt="">
                     <img v-else :src="`./flags/notFound.svg`" alt="">
                   </div>
@@ -115,6 +97,7 @@
                 <div class="original_language">LINGUA: {{ serieTv.original_language }} </div>
                 <div class="vote_average">VOTO: {{ serieTv.vote_average }} </div>
                 <div class="vote_stars">
+                  <!--Voto della serie-->
                   <i v-for="fullStar in voteStarsFunct(serieTv)" class="fas fa-star" ></i>
                   <i v-for="hollowStar in (5 - voteStarsFunct(serieTv))" class="far fa-star"></i>
                 </div>
