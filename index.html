@@ -55,7 +55,7 @@
                   <!--Bandiera nazionalità film-->
                   <div class="flag">
                     <img v-if="flagFunction(movie.original_language)" :src="'flags/${movie.original_language}.svg'" alt="">
-                    <img v-else :src="`./flags/notFound.svg`" alt="">
+                    <img v-else :src="'flags/notFound.svg'" alt="">
                   </div>
 
                 </div>
